@@ -14,28 +14,26 @@ import javax.servlet.http.HttpServletResponse;
 public class CalculadoraServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public CalculadoraServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int numero1 = Integer.parseInt(request.getParameter("numero1"));
+		int numero2 = Integer.parseInt(request.getParameter("numero2"));
+		
+		int resultado = numero1+numero2;
+		
+		response.getWriter().print("<p>" +"El resultado es:"+ resultado+ "</p>");
+		
+		request.setAttribute("resultado",resultado);
+		request.getRequestDispatcher("assets/html/resultado.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }
