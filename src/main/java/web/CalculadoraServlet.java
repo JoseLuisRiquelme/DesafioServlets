@@ -23,15 +23,26 @@ public class CalculadoraServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		try {
+		
 		int numero1 = Integer.parseInt(request.getParameter("numero1"));
 		int numero2 = Integer.parseInt(request.getParameter("numero2"));
-		
 		int resultado = numero1+numero2;
-		
-		response.getWriter().print("<p>" +"El resultado es:"+ resultado+ "</p>");
-		
 		request.setAttribute("resultado",resultado);
-		request.getRequestDispatcher("assets/html/resultado.jsp").forward(request, response);
+		request.getRequestDispatcher("assets/html/resultado.jsp").forward(request, response);}
+		 catch (NumberFormatException e) {
+			    // Si hay una excepción, significa que al menos uno de los valores no es un entero válido.
+			 
+			 request.getRequestDispatcher("assets/html/error1.jsp").forward(request, response);
+			 //response.getWriter().print("<p>" +"Error, uno o ambos no son numeros enteros!, intente nuevamente"+"</p>");
+			}
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	
