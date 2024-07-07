@@ -16,7 +16,7 @@
 			</div>
 			<div class="col-md-4">
 				<label for="inputPay" class="formlabel">Seleccione operacion</label>
-				<select id="operation" name="operation " class="form-select">
+				<select id="operation" name="operation" class="form-select">
 
 					<option value="Sumar">Sumar</option>
 					<option value="Restar">Restar</option>

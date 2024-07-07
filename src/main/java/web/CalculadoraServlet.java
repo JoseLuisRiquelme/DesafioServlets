@@ -27,8 +27,32 @@ public class CalculadoraServlet extends HttpServlet {
 		
 		int numero1 = Integer.parseInt(request.getParameter("numero1"));
 		int numero2 = Integer.parseInt(request.getParameter("numero2"));
+		String operacion = request.getParameter("operation"); 
 		int resultado = numero1+numero2;
+		 switch (operacion) {
+         case "Sumar":
+             resultado = numero1 + numero2;
+             break;
+         case "Restar":
+             resultado = numero1 - numero2;
+             break;
+         case "Dividir":
+             if (numero2 != 0) {
+                 resultado = numero1 / numero2;
+             } else {
+                 System.out.println("Error: No se puede dividir por cero.") ;
+             }
+             break;
+         case "Multiplicar":
+             resultado = numero1 * numero2;
+             break;
+         default:
+        	 System.out.println("Operación no reconocida.");
+     }
 		request.setAttribute("resultado",resultado);
+		request.setAttribute("operacion",operacion);
+		request.setAttribute("numero1",numero1);
+		request.setAttribute("numero2",numero2);
 		request.getRequestDispatcher("assets/html/resultado.jsp").forward(request, response);}
 		 catch (NumberFormatException e) {
 			    // Si hay una excepción, significa que al menos uno de los valores no es un entero válido.
